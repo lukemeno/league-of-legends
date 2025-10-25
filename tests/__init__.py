@@ -1,1 +1,1 @@
-"""Testpaket für die League of Legends Data Platform."""
+"""Testpaket für den LoL Dodge Trainer."""

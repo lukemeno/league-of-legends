@@ -1,33 +1,20 @@
-# League of Legends Data Platform
+# LoL Dodge Trainer
 
-## Projektbeschreibung
-Dieses Projekt soll eine datengetriebene Plattform rund um League of Legends bereitstellen. Der Fokus liegt auf der Sammlung, Aufbereitung und Bereitstellung von Spiel-, Champion- und Match-Statistiken über eine moderne Web-API. Ziel ist es, Analyst:innen, Entwickler:innen und Enthusiast:innen schnelle Einblicke in relevante Kennzahlen zu ermöglichen und aufbereitete Daten für eigene Anwendungen bereitzustellen.
+Ein browserbasiertes Trainingsspiel, das die Reaktions- und Ausweichfähigkeiten aus beliebten Dodge-Games der League-of-Legends-Community nachbildet. Das Projekt orientiert sich am Funktionsumfang von [loldodgegame.com](https://loldodgegame.com/) und legt eine moderne, erweiterbare Frontend-Codebasis an.
 
-## Anforderungen
-### Funktionale Anforderungen
-- **Match-Daten erfassen:** Historische Matches aus der Riot Games API abrufen und in einer eigenen Datenbank speichern.
-- **Champion- und Item-Metadaten synchronisieren:** Regelmäßige Aktualisierung von Champions, Items, Runen und Patches.
-- **Statistische Aggregationen bereitstellen:** Kennzahlen wie Winrates, Pick-/Ban-Raten und durchschnittliche Spielzeiten berechnen.
-- **REST-API für Analysen:** Endpunkte zur Verfügung stellen, über die Clients gefilterte Statistiken abrufen können.
-- **Authentifizierung und Ratenbegrenzung:** Zugriff über API-Schlüssel steuern und Missbrauch durch Rate Limiting verhindern.
-
-### Nicht-funktionale Anforderungen
-- **Skalierbarkeit:** Verarbeitung steigender Datenmengen und gleichzeitiger Anfragen.
-- **Performance:** Antwortzeiten unter 500 ms für typische Analyse-Abfragen.
-- **Zuverlässigkeit:** Monitoring, strukturierte Logs und automatisierte Tests.
-- **Wartbarkeit:** Saubere Modulstruktur, umfangreiche Dokumentation und CI/CD-Pipeline.
-
-## Projektumfang (Scope)
-Das Initialrelease umfasst den Aufbau der Daten-Pipeline, die Bereitstellung einer öffentlichen REST-API sowie eine einfache Weboberfläche für Basis-Auswertungen. Visualisierungen, Machine-Learning-Prognosen oder umfangreiche User-Management-Funktionen sind explizit **nicht** Teil des ersten Meilensteins und werden in späteren Iterationen adressiert.
+## Projektumfang
+- **Interaktive Spielfläche:** HTML5-Canvas mit Echtzeit-Rendering von Skillshots und Spielerbewegungen.
+- **Skillshot-Muster:** Konfigurierbare Angriffswellen, die typische Fähigkeiten von Champions wie Ahri, Ezreal oder Lux simulieren.
+- **Spielsteuerung:** Start-, Pause- und Reset-Logik inkl. Countdown, Lebenspunkten und Score-Tracking.
+- **Responsives Layout:** Stilistisch an League of Legends angelehnt, inklusive Control-Panel für Schwierigkeitsgrad und Szenario.
+- **Erweiterbarkeit:** Struktur für zusätzliche Champions, Effekte, Audio und Persistenz (Highscores, Profile).
 
 ## Technologie-Stack
-- **Programmiersprache:** Python 3.11
-- **Web-Framework:** FastAPI für performante REST-Endpunkte und automatische OpenAPI-Dokumentation.
-- **Datenbank:** PostgreSQL (Produktiv) sowie SQLite für lokale Entwicklung und Tests.
-- **ETL & Hintergrundprozesse:** Celery mit Redis als Message Broker für periodische Synchronisationsjobs.
-- **Testing:** Pytest für Unit- und Integrationstests.
-- **CI/CD:** GitHub Actions für Tests, Linting und Deployments.
-- **Containerisierung:** Docker & Docker Compose für reproduzierbare Umgebungen.
+- **Frontend:** Vanilla JavaScript (ES Modules) + HTML5 Canvas für performantes Rendering ohne Build-Tooling.
+- **Styling:** Modernes CSS mit Fokus auf dunkles UI-Design, responsive Grid-Layouts und komponentenähnliche Abschnitte.
+- **Tooling:** Optional Vite oder ein vergleichbarer Bundler für spätere Iterationen (derzeit nicht notwendig).
+- **Tests:** Python `pytest`-basierter Strukturtest, der die wichtigste Frontend-Dateien und Assets sicherstellt. E2E-Tests (z. B. Playwright) sind für spätere Meilensteine vorgesehen.
+- **Dokumentation:** Markdown-Dokumente unter `docs/` für Spielmechaniken, Architektur und Beitragsrichtlinien.
 
 ## Basis-Verzeichnisstruktur
 ```text
@@ -35,20 +22,34 @@ Das Initialrelease umfasst den Aufbau der Daten-Pipeline, die Bereitstellung ein
 ├── docs/
 │   └── README.md
 ├── src/
-│   └── app/
-│       ├── __init__.py
-│       └── main.py
+│   └── client/
+│       ├── index.html
+│       ├── scripts/
+│       │   └── game.js
+│       └── styles/
+│           └── main.css
 └── tests/
     ├── __init__.py
-    └── test_placeholder.py
+    └── test_structure.py
 ```
 
-## Nächste Schritte
-1. Projektabhängigkeiten in einer `pyproject.toml` definieren und virtuelle Umgebung einrichten.
-2. Datenbank-Schema modellieren und Migrations-Setup mit Alembic erstellen.
-3. Erste FastAPI-Endpunkte (z. B. `/health`, `/matches`) prototypisch implementieren.
-4. Automatisierte Tests für Datenimporte und API-Endpunkte hinzufügen.
-5. Deployment-Strategie (z. B. Docker Compose oder Kubernetes) ausarbeiten.
+## Setup & lokale Entwicklung
+1. **Statisches Hosting:** Öffne `src/client/index.html` direkt im Browser oder nutze einen einfachen HTTP-Server (`python -m http.server src/client`).
+2. **Hot Reloading (optional):** Richte Vite o. ä. ein, sobald modulare Bundles, Assets oder TypeScript erforderlich werden.
+3. **Linting & Quality-Gates:** Empfohlen sind ESLint/Prettier (JavaScript) sowie Stylelint (CSS). Konfiguration folgt in späteren Commits.
+
+## Tests ausführen
+```bash
+pytest
+```
+Der Strukturtest validiert, dass zentrale Client-Dateien existieren und nicht leer sind.
+
+## Roadmap
+1. Skillshot-Physik verfeinern (Trefferboxen, Bewegungskurven, Geschwindigkeitskurven).
+2. Audio & visuelles Feedback (SFX, Trefferanimationen, Hitmarker).
+3. Eingabemethoden erweitern (Touch-Unterstützung, Gamepad-API).
+4. Progression & Challenges (Highscore-Listen, Missionsziele, Tag/Nacht-Modi).
+5. Deployment auf statischem Hosting (z. B. GitHub Pages, Netlify) inkl. CI/CD.
 
 ## Lizenz
 TBD

@@ -1,9 +1,12 @@
 # Dokumentation
 
-Diese Dokumentationssektion dient als zentrale Sammelstelle für Architekturübersichten, API-Beschreibungen und Betriebshandbücher. Ergänze hier weitere Unterseiten, sobald neue Komponenten entstehen.
+Diese Sektion sammelt weiterführende Informationen zur Spielmechanik, zum technischen Aufbau und zu Beitragsprozessen des LoL Dodge Trainers.
 
-## Empfohlene Inhalte
-- **Architekturübersicht:** Komponenten, Datenflüsse, Deployment-Topologie.
-- **API-Referenz:** Beschreibung der REST-Endpunkte inkl. Beispielanfragen.
-- **Datenmodell:** Entitäten, Beziehungen und Migrationsstrategie.
-- **Betrieb & Monitoring:** Logging, Alerting und Backup-Prozesse.
+## Inhaltsvorschläge
+- **Spielmechaniken:** Beschreibung der Skillshot-Muster, Hitbox-Logik, Schwierigkeitskurven.
+- **Frontend-Architektur:** Canvas-Layering, Game-Loop, Input-Handling, Render-Pipeline.
+- **Visuelles Design:** UI-Komponenten, Farbpaletten, Animationen und Effekte.
+- **Testing & QA:** Strukturtests, geplante Browser-Automatisierung, Performance-Metriken.
+- **Contributing Guide:** Coding-Guidelines, Branch-Strategie, Review-Prozess.
+
+Erweitere diese Dokumentation kontinuierlich, sobald neue Features oder technische Entscheidungen getroffen werden.
