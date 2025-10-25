@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LoL Dodge Trainer</title>
+    <link rel="stylesheet" href="styles/main.css" />
+  </head>
+  <body>
+    <header class="top-bar">
+      <h1>LoL Dodge Trainer</h1>
+      <nav class="actions">
+        <button type="button" id="start-button">Start</button>
+        <button type="button" id="pause-button" disabled>Pause</button>
+        <button type="button" id="reset-button" disabled>Reset</button>
+      </nav>
+    </header>
+
+    <main class="layout">
+      <section class="game-panel">
+        <canvas id="game-canvas" width="960" height="540"></canvas>
+        <div id="countdown" class="countdown countdown--hidden">3</div>
+      </section>
+
+      <aside class="status-panel">
+        <section class="status-panel__section">
+          <h2>Player</h2>
+          <p id="player-health"><strong>Health:</strong> 3</p>
+          <p id="player-score"><strong>Score:</strong> 0</p>
+        </section>
+        <section class="status-panel__section">
+          <h2>Scenario</h2>
+          <label class="control">
+            <span>Champion Pattern</span>
+            <select id="pattern-select">
+              <option value="ahri">Ahri - Orb of Deception</option>
+              <option value="ezreal">Ezreal - Mystic Shot</option>
+              <option value="lux">Lux - Final Spark</option>
+            </select>
+          </label>
+          <label class="control">
+            <span>Difficulty</span>
+            <input type="range" id="difficulty-slider" min="1" max="5" value="1" />
+          </label>
+        </section>
+        <section class="status-panel__section status-panel__section--log">
+          <h2>Event Log</h2>
+          <ul id="event-log"></ul>
+        </section>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      <p>Inspired by community dodge trainers for League of Legends. Built for practice and experimentation.</p>
+    </footer>
+
+    <script type="module" src="scripts/game.js"></script>
+  </body>
+</html>
